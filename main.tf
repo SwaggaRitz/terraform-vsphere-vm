@@ -261,6 +261,13 @@ resource "vsphere_virtual_machine" "vm" {
     }
   }
 
+  vapp {
+    properties ={
+
+      user-data = base64encode(file("${path.root}/cloudinit/kickstart.yaml"))
+    }
+  }
+
   // Advanced options
   hv_mode                          = var.hv_mode
   ept_rvi_mode                     = var.ept_rvi_mode
